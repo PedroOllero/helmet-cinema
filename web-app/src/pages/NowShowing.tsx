@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import getAllMovies from "../services/getAllMovies";
 
@@ -18,7 +18,7 @@ const NowShowing: React.FC = () => {
           <Link to={`/booking/${movie.id}`}>
               <div key={movie.id} className="px-4 py-8 flex flex-row gap-6 border-b-1 border-red-900">
                 <img
-                  src={movie.image_url}
+                  src="../src/assets/oppenheimer.jpg"
                   alt={movie.title}
                   className="w-36 h-58 object-cover"
                 />
