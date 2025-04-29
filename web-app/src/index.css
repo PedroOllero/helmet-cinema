@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+@layer utilities {
+    .hover-standard {
+      @apply active:bg-blue-500 hover:bg-blue-500 transition-all duration-200 ease-in-out;
+    }
+    .text-input-standard{
+      @apply border-3 border-white bg-white text-black w-full mb-5 p-2 hover:border-blue-500 active:border-blue-500;
+    }
+  }
