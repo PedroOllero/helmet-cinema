@@ -1,10 +1,21 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { movies } from "../const/movies";
+import getMovieById from "../services/getMovie";
+import { Movie } from "../types/movie";
 
 const Booking = () => {
   const { id } = useParams<{ id: string }>();
+  const [movie, setMovie] = useState<Movie>(null);
 
-  const movie = movies.find((m) => m.id === Number(id));
+  useEffect(() => {
+    getMovieById(id)
+    .then((movie) => {
+      setMovie(movie);
+    })
+    .catch((error) => {
+      console.error("Error fetching movie:", error);
+    })
+  }, [id]);
 
   if (!movie) {
     return <div>Movie not found</div>;
