@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import NowShowing from "./pages/NowShowing";
 import ComingSoon from "./pages/ComingSoon";
 import Booking from "./pages/Booking";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/now-showing" element={<NowShowing />} />
             <Route path="/coming-soon" element={<ComingSoon />} />
             <Route path="/booking/:id" element={<Booking />} />
+            <Route path="/profile/" element={<Profile />} />
           </Routes>
         </main>
       </BrowserRouter>

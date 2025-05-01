@@ -1,13 +1,13 @@
 import React from "react";
-import { EmptyCredentials } from "../types/user";
+import { EmptyRegisterCredentials } from "../types/user";
 
 const Register: React.FC = () => {
   const [error, setError] = React.useState("");
-  const [credentials, setCredentials] = React.useState(EmptyCredentials);
+  const [registerCredential, setResgisterCredential] = React.useState(EmptyRegisterCredentials);
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCredentials({
-      ...credentials,
+    setResgisterCredential({
+      ...registerCredential,
       [e.target.name]: e.target.value,
     });
   };
@@ -21,7 +21,7 @@ const Register: React.FC = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(credentials),
+      body: JSON.stringify(registerCredential),
     });
 
     if (response.status === 201) {
