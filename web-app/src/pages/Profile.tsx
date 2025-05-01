@@ -1,43 +1,41 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import getAllMovies from "../services/getAllMovies";
 
-const Profile: React.FC = () => {
-  const [movies, setMovies] = useState([]);
+const Profile = () => {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    getAllMovies()
-      .then((movies) => setMovies(movies))
-      .catch((error) => console.error("Error fetching movies:", error));
+    const fetchProfile = async () => {
+      const token = localStorage.getItem("token");
+
+      const res = await fetch("http://localhost:3000/api/auth/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("profile",res);
+      console.log("token",token);
+
+      const data = await res.json();
+      if (res.ok) {
+        setUser(data.user);
+        console.log(data.user);
+      } else {
+        console.error(data);
+      }
+    };
+
+    console.log("user",user);
+
+    fetchProfile();
   }, []);
 
+  if (!user) return <p>Loading...</p>;
+
   return (
-    <div className="flex flex-col min-h-[91dvh] p-5 ">
-        <p>My profile</p>
-      <div>
-        {movies.map((movie) => (
-          <Link to={`/booking/${movie.id}`}>
-              <div key={movie.id} className="px-4 py-8 flex flex-row gap-6 border-b-1 border-red-900">
-                <img
-                  src={movie.image}
-                  alt={movie.title}
-                  className="w-36 h-58 object-cover"
-                />
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <h2 className="text-2xl font-semibold">{movie.title}</h2>
-                    <p className="text-sm text-red-400">{movie.genre}</p>
-                  </div>
-                  <div>
-                    <p className="text-s font-extralight text-gray-200">
-                      {movie.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-          </Link>
-        ))}
-      </div>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold">Welcome, {user.name}</h1>
+      <p>Email: {user.email}</p>
     </div>
   );
 };

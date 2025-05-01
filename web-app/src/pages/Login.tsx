@@ -1,32 +1,38 @@
-import React from "react";
-import { EmptyLoginCredentials } from "../types/user";
+import React, { use, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
-  const [loginCredential, setLoginCredential] = React.useState(EmptyLoginCredentials);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const navigate = useNavigate(); 
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginCredential({
-      ...loginCredential,
-      [e.target.name]: e.target.value,
-    });
-  };
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:3000/api/auth/login", {
+    const res = await fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(loginCredential),
+      body: JSON.stringify({ email, password }),
     });
+    const data = await res.json();
 
-    if (response.status === 200) {
-      window.location.href = "/profile";
+    if (res.ok && data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/profile");
     } else {
-      const data = await response.json();
-      alert("Login failed: " + data.error);
+      alert(data.error || "Login failed");
     }
   };
 

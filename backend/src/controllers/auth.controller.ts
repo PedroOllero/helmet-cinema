@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { RequestHandler } from "express";
+import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 const SECRET = process.env.JWT_SECRET || "secret";
@@ -44,9 +45,12 @@ export const login: RequestHandler = async (req, res) => {
       return;
     }
 
-    res.status(200).json({ message: "Login successful" });
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET || "supersecret", {
+      expiresIn: "1d",
+    });
+
+    res.json({ message: "Login successful", token, user: { id: user.id, name: user.name } });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "An error occurred while logging in" });
+    res.status(500).json({ error: "Login failed" });
   }
 };
