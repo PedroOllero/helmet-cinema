@@ -12,10 +12,7 @@ const Profile = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log("profile",res);
-      console.log("token",token);
-
+      console.log("res", res);
       const data = await res.json();
       if (res.ok) {
         setUser(data.user);
@@ -30,7 +27,7 @@ const Profile = () => {
     fetchProfile();
   }, []);
 
-  if (!user) return <p>Loading...</p>;
+  if (!user) return <p>Loading.....</p>;
 
   return (
     <div className="p-4">
