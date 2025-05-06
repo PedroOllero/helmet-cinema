@@ -4,4 +4,5 @@ export type Movie = {
     description: string;
     image_url: string;
     genre: string;
+    session: string;
   };

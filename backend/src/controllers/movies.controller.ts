@@ -18,9 +18,9 @@ export const getMovieById: RequestHandler<{ id: string }> = async (req, res) => 
 };
 
 export const createMovie = async (req: Request, res: Response) => {
-  const { title, description, imageUrl, genre } = req.body;
+  const { title, description, imageUrl, genre, session } = req.body;
   const newMovie = await prisma.movie.create({
-    data: { title, description, imageUrl, genre }
+    data: { title, description, imageUrl, genre, session}
   });
 
   res.status(201).json(newMovie);

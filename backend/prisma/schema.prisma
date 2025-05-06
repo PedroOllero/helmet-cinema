@@ -13,6 +13,7 @@ model Movie {
   description String
   imageUrl    String
   genre       String
+  session     String
 }
 
 model User {

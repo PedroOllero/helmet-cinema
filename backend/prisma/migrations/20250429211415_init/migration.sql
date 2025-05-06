@@ -4,5 +4,6 @@ CREATE TABLE "Movie" (
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "imageUrl" TEXT NOT NULL,
-    "genre" TEXT NOT NULL
+    "genre" TEXT NOT NULL,
+    "session" TEXT NOT NULL
 );
