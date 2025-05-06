@@ -11,12 +11,13 @@ const NowShowing: React.FC = () => {
       .catch((error) => console.error("Error fetching movies:", error));
   }, []);
 
+  console.log(movies)
   return (
     <div className="flex flex-col min-h-[91dvh] p-5 ">
       <img/>
       <div>
         {movies.map((movie) => (
-          <MovieSection movie={movie}/>
+          <MovieSection movie={movie} />
         ))}
       </div>
     </div>

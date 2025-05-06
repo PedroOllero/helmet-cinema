@@ -2,12 +2,7 @@ import { Link } from "react-router-dom";
 import { Movie } from "../types/movie";
 
 export const MovieSection: React.FC<{ movie: Movie }> = ({ movie }) => {
-  const sessionString = JSON.parse(movie.session);
-  const sessionArray: number[] = Array.isArray(sessionString)
-    ? sessionString
-    : [sessionString];
-    console.log(sessionArray[0])
-    console.log(sessionArray[1])
+  console.log(movie.sessions)
   return (
     <Link to={`/booking/${movie.id}`}>
       <div
@@ -25,15 +20,13 @@ export const MovieSection: React.FC<{ movie: Movie }> = ({ movie }) => {
             <p className="text-sm text-red-400">{movie.genre}</p>
           </div>
           <div>
-            <p className="text-s text-black bg-green-500 p-2 w-17 flex justify-center hover-standard">
-              {movie.session}
-            </p>
-          </div>
-           <div>
-            {sessionArray.map((item) => (
-              <p className="text-s font-extralight text-gray-200" key={item}>
-                {item}
-              </p>
+             {movie.sessions.map((session) => (
+              <span
+                key={session.id}
+                className="text-s text-black bg-green-500 p-2 w-17 flex justify-center hover-standard"
+              >
+                {session.time}
+              </span>
             ))}
           </div>
         </div>
