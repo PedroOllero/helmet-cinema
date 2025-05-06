@@ -1,33 +1,43 @@
-import { Link } from "react-router-dom"
-import { Movie } from "../types/movie"
+import { Link } from "react-router-dom";
+import { Movie } from "../types/movie";
 
 export const MovieSection: React.FC<{ movie: Movie }> = ({ movie }) => {
-    return(
-        <Link to={`/booking/${movie.id}`}>
-              <div key={movie.id} className="px-4 py-8 flex flex-row gap-6 border-b-1 border-red-900">
-                <img
-                  src={movie.image}
-                  alt={movie.title}
-                  className="w-36 h-58 object-cover"
-                />
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <h2 className="text-2xl font-semibold">{movie.title}</h2>
-                    <p className="text-sm text-red-400">{movie.genre}</p>
-                  </div>
-                  <div>
-                  <p className="text-s text-black bg-green-500 p-2 w-17 flex justify-center hover-standard">
-                      {movie.session}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-s font-extralight text-gray-200">
-                      {movie.description}
-                    </p>
-                  </div>
-                  
-                </div>
-              </div>
-          </Link>
-    )
-}
+  const sessionString = JSON.parse(movie.session);
+  const sessionArray: number[] = Array.isArray(sessionString)
+    ? sessionString
+    : [sessionString];
+    console.log(sessionArray[0])
+    console.log(sessionArray[1])
+  return (
+    <Link to={`/booking/${movie.id}`}>
+      <div
+        key={movie.id}
+        className="px-4 py-8 flex flex-row gap-6 border-b-1 border-red-900"
+      >
+        <img
+          src={movie.image}
+          alt={movie.title}
+          className="w-36 h-58 object-cover"
+        />
+        <div className="flex flex-col justify-between">
+          <div>
+            <h2 className="text-2xl font-semibold">{movie.title}</h2>
+            <p className="text-sm text-red-400">{movie.genre}</p>
+          </div>
+          <div>
+            <p className="text-s text-black bg-green-500 p-2 w-17 flex justify-center hover-standard">
+              {movie.session}
+            </p>
+          </div>
+           <div>
+            {sessionArray.map((item) => (
+              <p className="text-s font-extralight text-gray-200" key={item}>
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+};

@@ -8,12 +8,19 @@ datasource db {
 }
 
 model Movie {
-  id          Int      @id @default(autoincrement())
+  id          String    @id @default(uuid())
   title       String
   description String
   imageUrl    String
   genre       String
-  session     String
+  sessions    Session[]
+}
+
+model Session {
+  id       String   @id @default(uuid())
+  time     String
+  movieId  String
+  movie    Movie    @relation(fields: [movieId], references: [id])
 }
 
 model User {

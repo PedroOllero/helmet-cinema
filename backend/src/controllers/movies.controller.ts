@@ -25,3 +25,19 @@ export const createMovie = async (req: Request, res: Response) => {
 
   res.status(201).json(newMovie);
 };
+
+export const addSession = async (req: Request, res: Response) => {
+  const { movieId, time } = req.body;
+
+  try {
+    const session = await prisma.session.create({
+      data: {
+        time,
+        movieId,
+      },
+    });
+    res.json(session);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to add session" });
+  }
+};
