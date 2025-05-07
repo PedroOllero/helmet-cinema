@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Movie } from "../types/movie";
 
 export const MovieSection: React.FC<{ movie: Movie }> = ({ movie }) => {
-
   return (
     <Link to={`/booking/${movie.id}`}>
       <div

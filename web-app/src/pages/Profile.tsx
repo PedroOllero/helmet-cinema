@@ -16,13 +16,10 @@ const Profile = () => {
       const data = await res.json();
       if (res.ok) {
         setUser(data.user);
-        console.log(data.user);
       } else {
         console.error(data);
       }
     };
-
-    console.log("user",user);
 
     fetchProfile();
   }, []);

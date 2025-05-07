@@ -13,7 +13,10 @@ export const getAllMovies = async (req: Request, res: Response) => {
 
 export const getMovieById: RequestHandler<{ id: string }> = async (req, res) => {
   const id = req.params.id;
-  const movie = await prisma.movie.findUnique({ where: { id } });
+  const movie = await prisma.movie.findUnique({  where: { id },
+    include: {
+      sessions: true,
+    }, });
   if (!movie) {
     res.status(404).json({ message: "Movie not found" });
     return;

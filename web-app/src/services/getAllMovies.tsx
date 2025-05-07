@@ -1,5 +1,4 @@
 const API_URL = import.meta.env.VITE_API_URL;
-console.log("Api",API_URL)
 
 const getAllMovies = async () => {
   const response = await fetch(`${API_URL}/movies`);
