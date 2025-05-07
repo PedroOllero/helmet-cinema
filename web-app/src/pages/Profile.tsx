@@ -1,28 +1,14 @@
 import { useEffect, useState } from "react";
-
+import { getProfile } from "../services/getProfile";
 const Profile = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      const token = localStorage.getItem("token");
-
-      const res = await fetch("http://localhost:3000/api/auth/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("res", res);
-      const data = await res.json();
-      if (res.ok) {
-        setUser(data.user);
-      } else {
-        console.error(data);
-      }
-    };
-
-    fetchProfile();
-  }, []);
+    getProfile()
+    .then((profile) => setUser(profile))
+    .catch((error) => console.error("Error fetching user:", error));
+    console.log(user)
+  }, [user]);
 
   if (!user) return <p>Loading.....</p>;
 
