@@ -9,12 +9,12 @@ const Booking = () => {
 
   useEffect(() => {
     getMovieById(id)
-    .then((movie) => {
-      setMovie(movie);
-    })
-    .catch((error) => {
-      console.error("Error fetching movie:", error);
-    })
+      .then((movie) => {
+        setMovie(movie);
+      })
+      .catch((error) => {
+        console.error("Error fetching movie:", error);
+      });
   }, [id]);
 
   if (!movie) {
@@ -22,13 +22,26 @@ const Booking = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-[91dvh] p-5">
-      <img src={movie.imageUrl} alt={movie.title} className="w-80 mx-auto object-cover mb-5" />
-      <h1 className="text-3xl font-bold mt-4">{movie.title}</h1>
-      <p className="mt-2">{movie.description}</p>
-      <p className="mt-2 text-red-400">{movie.genre}</p>
+    <div className="min-h-[91dvh] p-5">
+      <div className="flex flex-row ">
+        <img
+          src={movie.imageUrl}
+          alt={movie.title}
+          className="h-50"
+        />
+        <div className="px-3 flex flex-col justify-between">
+          <div>
+          <h1 className="text-xl font-bold">{movie.title}</h1>
+          <p className="text-red-400">{movie.genre}</p>
+          </div>
+          <p className="text-xs text-gray-200">{movie.description}</p>
+        </div>
+      </div>
+      <div>
+        <p>Selecciona la sessión a la que quieres ir</p>
+      </div>
     </div>
   );
-}
+};
 
 export default Booking;
