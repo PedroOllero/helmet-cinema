@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import { Movie } from "../types/movie";
 
 export const MovieSection: React.FC<{ movie: Movie }> = ({ movie }) => {
-  console.log(movie.sessions)
+
   return (
     <Link to={`/booking/${movie.id}`}>
       <div
-        key={movie.id}
+        key={`"${movie.id}"`}
         className="px-4 py-8 flex flex-row gap-6 border-b-1 border-red-900"
       >
         <img
-          src={movie.image}
+          src={movie.imageUrl}
           alt={movie.title}
           className="w-36 h-58 object-cover"
         />
@@ -23,7 +23,7 @@ export const MovieSection: React.FC<{ movie: Movie }> = ({ movie }) => {
              {movie.sessions.map((session) => (
               <span
                 key={session.id}
-                className="text-s text-black bg-green-500 p-2 w-17 flex justify-center hover-standard"
+                className="text-s text-black bg-green-500 p-2 w-17 flex justify-center hover-standard m-1"
               >
                 {session.time}
               </span>
