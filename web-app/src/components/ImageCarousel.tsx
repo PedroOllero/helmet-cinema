@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 const images = [
-  "/src/assets/oppenheimer.jpg",
-  "/src/assets/spiderman.jpg",
-  "/src/assets/wicked.jpg",
+  "/src/assets/wicked.jpeg",
+  "/src/assets/dune.jpg",
+  "/src/assets/avengers.jpg",
 ];
 
 const ImageCarousel = () => {
@@ -30,11 +30,11 @@ const ImageCarousel = () => {
   };
 
   return (
-    <div className="relative w-full h-115 overflow-hidden">
+    <div className="relative overflow-hidden">
       <img
         src={images[currentIndex]}
         alt={`Slide ${currentIndex}`}
-        className="w-full h-full object-cover"
+        className="h-90 lg:h-95 lg:w-full object-cover"
       />
 
       <button
