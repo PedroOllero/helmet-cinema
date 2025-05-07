@@ -22,6 +22,9 @@ const Booking = () => {
     if(sessionId){
       setSelectedSession(sessionId)
     }
+    if(sessionId == selectedSession){
+      setSelectedSession("")
+    }
   };
 
   if (!movie) {
@@ -47,9 +50,9 @@ const Booking = () => {
           {movie.sessions.map((session) => (
             <button
               key={session.id}
-              className={`p-2 m-1 text-white cursor-pointer ${
+              className={`p-2 m-1 text-white transition-all duration-200 ease-in-out cursor-pointer ${
                 selectedSession === session.id
-                  ? "bg-orange-500"
+                  ? "bg-red-600"
                   : "bg-green-500"
               }`}
               onClick={() => handleSelectSession(session.id)}
@@ -58,7 +61,11 @@ const Booking = () => {
             </button>
           ))}
         </div>
-        <button className="bg-red-400 p-2 mt-20 hover-standard">
+        <button className={`p-2 mt-20  ${
+                selectedSession === ""
+                  ? "bg-red-400"
+                  : "bg-red-600 hover-standard cursor-pointer"
+              }`}>
           Get my tickets!
         </button>
       </div>
