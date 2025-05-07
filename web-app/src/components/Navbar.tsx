@@ -16,13 +16,13 @@ const Navbar: React.FC = () => {
       <div className="flex flex-row">
         <Link
           to="/login"
-          className="text-xl font-bold bg-red-400 px-7 py-5 hover-standard"
+          className="text-l font-bold bg-red-400 px-7 py-5 hover-standard"
         >
           Login
         </Link>
         <Link
           to="/register"
-          className="text-xl font-bold bg-red-600 px-7 py-5 hover-standard"
+          className="text-ll font-bold bg-red-600 px-7 py-5 hover-standard"
         >
           Register
         </Link>

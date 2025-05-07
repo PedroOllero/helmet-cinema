@@ -11,7 +11,7 @@ const Home: React.FC = () => {
         </h1>
       </Link>
 
-      <Link to="/coming-soon" className="text-2xl font-bold text-center flex justify-center items-center bg-red-400 hover-standard h-30 lg:h-12">
+      <Link to="/coming-soon" className="text-2xl font-bold text-center flex justify-center items-center bg-red-400 hover-standard h-18 lg:h-14">
         <h2 >
           Cooming soon
         </h2>
