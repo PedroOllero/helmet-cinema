@@ -1,5 +1,8 @@
+const API_URL = import.meta.env.VITE_API_URL;
+console.log("Api",API_URL)
+
 const getAllMovies = async () => {
-  const response = await fetch("http://localhost:3000/movies");
+  const response = await fetch(`${API_URL}/movies`);
   if (!response.ok) {
     throw new Error("Failed to fetch movies");
   }
