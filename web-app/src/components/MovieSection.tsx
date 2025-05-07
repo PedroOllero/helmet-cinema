@@ -19,16 +19,17 @@ export const MovieSection: React.FC<{ movie: Movie }> = ({ movie }) => {
             <h2 className="text-2xl font-semibold">{movie.title}</h2>
             <p className="text-sm text-red-400">{movie.genre}</p>
           </div>
-          <div>
+          <div className="flex flex-row">
              {movie.sessions.map((session) => (
               <span
                 key={session.id}
-                className="text-s text-black bg-green-500 p-2 w-17 flex justify-center hover-standard m-1"
+                className="text-sm text-black bg-green-500 p-2 w-12 flex justify-center hover-standard m-1"
               >
                 {session.time}
               </span>
             ))}
           </div>
+          <p className="text-xs text-gray-300">{movie.description}</p>
         </div>
       </div>
     </Link>
