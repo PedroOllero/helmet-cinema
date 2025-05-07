@@ -32,18 +32,18 @@ const Booking = () => {
   }
   
   return (
-    <div className="min-h-[91dvh] p-5">
-      <div className="flex flex-row ">
-        <img src={movie.imageUrl} alt={movie.title} className="h-50" />
+    <div className="min-h-[91dvh] p-5 lg:flex lg:flex-row">
+      <div className="flex flex-row lg:w-200 lg:border-r-2 lg:border-red-500">
+        <img src={movie.imageUrl} alt={movie.title} className="h-50 lg:h-125" />
         <div className="px-3 flex flex-col justify-between">
           <div>
-            <h1 className="text-xl font-bold">{movie.title}</h1>
-            <p className="text-red-400">{movie.genre}</p>
+            <h1 className="text-xl font-bold lg:text-3xl">{movie.title}</h1>
+            <p className="text-red-400 lg:text-2xl">{movie.genre}</p>
           </div>
-          <p className="text-xs text-gray-200">{movie.description}</p>
+          <p className="text-xs text-gray-200 lg:text-xl">{movie.description}</p>
         </div>
       </div>
-      <div className="mt-10 flex flex-col">
+      <div className="mt-10 flex flex-col lg:my-auto lg:mx-5">
         <p className="text-2xl">Upcoming Showings For Today</p>
         <p className="text-red-400">Pick the session you want to book:</p>
         <div className="flex flex-row mt-5">
