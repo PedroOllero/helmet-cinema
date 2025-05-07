@@ -34,7 +34,7 @@ const ImageCarousel = () => {
       <img
         src={images[currentIndex]}
         alt={`Slide ${currentIndex}`}
-        className="h-90 lg:h-95 lg:w-full object-cover"
+        className="h-90 lg:h-95 lg:w-full md:h-95 md:w-full object-cover"
       />
 
       <button
